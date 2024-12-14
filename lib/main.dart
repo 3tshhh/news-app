@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/style/appStyle.dart';
 import 'package:news_app/ui/home/homeScreen.dart';
+import 'package:news_app/ui/home/newsArticlePage.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
           initialRoute: HomeScreen.routeName,
           routes: {
             HomeScreen.routeName:(_)=>HomeScreen(),
+            NewsArticlePage.routeName:(_)=>NewsArticlePage(),
           },
         );
       },
