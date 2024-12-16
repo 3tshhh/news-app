@@ -32,4 +32,18 @@ class ApiManager{
         print(error.toString());
       }
     }
+    static Future<ArticleResponse?> getSearchArticles(String q)async{
+      try{
+        Uri url = Uri.https("newsapi.org","/v2/everything",{
+          "apiKey":"79062df3f0514465a18fcc00bb0baffa",
+          "q":q ,
+        });
+        var response =  await http.get(url);
+        var json = jsonDecode(response.body);
+        var articleResponse = ArticleResponse.fromJson(json);
+        return articleResponse;
+      }catch(error){
+        print(error.toString());
+      }
+    }
 }
