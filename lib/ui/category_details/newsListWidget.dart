@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news_app/remote/apiManager.dart';
 import 'package:news_app/ui/category_details/articleItem.dart';
 
+import '../home/newsArticlePage.dart';
+
 class NewsListWidget extends StatefulWidget {
   final String? sourceId;
   const NewsListWidget({this.sourceId,super.key});
@@ -52,8 +54,12 @@ class _NewsListWidgetState extends State<NewsListWidget> {
           }
           var articles = response?.articles??[];
           return ListView.separated(
-              itemBuilder: (context,index)=>ArticleItem(article: articles[index],),
-              separatorBuilder: (context,index)=>Divider(),
+              itemBuilder: (context,index)=>InkWell(
+                  onTap: (){
+                    Navigator.of(context).pushNamed(NewsArticlePage.routeName,arguments: articles[index]);
+                  },
+                  child: ArticleItem(article: articles[index],)),
+              separatorBuilder: (context,index)=>Divider(color: Colors.transparent,),
               itemCount: articles.length);
 
 

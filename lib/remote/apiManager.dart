@@ -7,7 +7,7 @@ class ApiManager{
     static Future<SourceResponse?> getSources(String category)async{
       try{
         Uri url = Uri.https("newsapi.org","/v2/top-headlines/sources",{
-          "apiKey":"829cab809508409c986c6eaba90c331f",
+          "apiKey":"79062df3f0514465a18fcc00bb0baffa",
           "category":category,
         });
         var response =  await http.get(url);
@@ -21,8 +21,22 @@ class ApiManager{
     static Future<ArticleResponse?> getArticles(String sourceId)async{
       try{
         Uri url = Uri.https("newsapi.org","/v2/everything",{
-          "apiKey":"829cab809508409c986c6eaba90c331f",
+          "apiKey":"79062df3f0514465a18fcc00bb0baffa",
           "sources":sourceId,
+        });
+        var response =  await http.get(url);
+        var json = jsonDecode(response.body);
+        var articleResponse = ArticleResponse.fromJson(json);
+        return articleResponse;
+      }catch(error){
+        print(error.toString());
+      }
+    }
+    static Future<ArticleResponse?> getSearchArticles(String q)async{
+      try{
+        Uri url = Uri.https("newsapi.org","/v2/everything",{
+          "apiKey":"79062df3f0514465a18fcc00bb0baffa",
+          "q":q ,
         });
         var response =  await http.get(url);
         var json = jsonDecode(response.body);

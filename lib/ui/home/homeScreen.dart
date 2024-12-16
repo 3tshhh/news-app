@@ -3,6 +3,9 @@ import 'package:news_app/ui/category_details/categoryDetailsWidget.dart';
 import 'package:news_app/ui/home/widgets/categoryTab.dart';
 import 'package:news_app/ui/home/widgets/customDrawer.dart';
 import 'package:news_app/ui/home/widgets/settingsTab.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'Search/Search.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "Home";
@@ -34,6 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
         body: selectedWidget,
         drawer: CustomDrawer(onPress: SelectedTab,),
         appBar: AppBar(
+          actions: [
+            IconButton(
+                onPressed: ()=>showSearch(
+                    context: context,
+                    delegate:CustomSearch() ),
+                icon: Icon(Icons.search,size: 25.sp,))
+          ],
           title: const Text("News App"),
         ),
 
