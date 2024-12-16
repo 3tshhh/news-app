@@ -31,6 +31,9 @@ class CustomSearch extends SearchDelegate{
 
   @override
   Widget buildResults(BuildContext context) {
+    if(query.isEmpty){
+      return Center(child: Text("please enter a query to searrch"),);
+    }
     return FutureBuilder(
         future: ApiManager.getSearchArticles(query),
         builder: (_,snapshot){
@@ -97,7 +100,7 @@ class CustomSearch extends SearchDelegate{
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return Container();
+    return Center(child: Text("Suggestions"),);
   }
   @override
   ThemeData appBarTheme(BuildContext context) {
